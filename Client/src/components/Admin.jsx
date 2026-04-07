@@ -13,13 +13,13 @@ export default function Admin() {
     }, []);
 
     const fetchResumes = async () => {
-        const res = await axios.get('http://localhost:5000/api/admin/resumes');
+        const res = await axios.get('https://pdf-locker-5m9g.onrender.com/api/admin/resumes');
         setResumes(res.data);
     };
 
     const handleDelete = async (id) => {
         if(window.confirm("Are you sure you want to delete this entry?")) {
-            await axios.delete(`http://localhost:5000/api/admin/resumes/${id}`);
+            await axios.delete(`https://pdf-locker-5m9g.onrender.com/api/admin/resumes/${id}`);
             fetchResumes(); 
         }
     };
@@ -38,7 +38,7 @@ export default function Admin() {
     // 3. Save changes to backend and close Modal
     const handleSave = async (id) => {
         try {
-            await axios.put(`http://localhost:5000/api/admin/resumes/${id}`, editFormData);
+            await axios.put(`https://pdf-locker-5m9g.onrender.com/api/admin/resumes/${id}`, editFormData);
             setEditingId(null); 
             fetchResumes();     
         } catch (error) {
