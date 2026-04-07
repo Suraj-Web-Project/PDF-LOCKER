@@ -18,7 +18,7 @@ export default function Builder() {
     useEffect(() => {
         const checkStatus = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/api/status');
+                const response = await axios.get('https://pdf-locker-5m9g.onrender.com/api/status');
                 setIsExpired(response.data.isExpired);
             } catch (error) {
                 console.error(error);
@@ -41,7 +41,7 @@ export default function Builder() {
 
             setPasswordMessage(`Success! Use this password to open your PDF: ${password}`);
 
-            const response = await axios.post('http://localhost:5000/api/resume/download', formData, {
+            const response = await axios.post('https://pdf-locker-5m9g.onrender.com/api/resume/download', formData, {
                 responseType: 'blob'
             });
 
@@ -63,7 +63,7 @@ export default function Builder() {
         setIsEmailing(true);
         setEmailStatusMessage('Sending email...');
         try {
-            await axios.post('http://localhost:5000/api/resume/email', formData);
+            await axios.post('https://pdf-locker-5m9g.onrender.com/api/resume/email', formData);
             setEmailStatusMessage('Resume successfully sent to your email!');
         } catch (error) {
             if (error.response?.status === 403) setIsExpired(true);
